@@ -1,4 +1,4 @@
-FROM multiarch/debian-debootstrap:amd64-stretch
+FROM balenalib/rpi-raspbian
 
 # Install packages
 RUN apt-get update
