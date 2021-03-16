@@ -18,6 +18,7 @@ RUN pip3 install --upgrade google-assistant-library google-auth \
 #RUN apt-get remove -y --purge python3-pip python3-dev
 RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
+RUN modprobe snd-dummy
 
 # Copy data
 COPY run.sh /
