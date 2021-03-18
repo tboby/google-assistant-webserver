@@ -1,6 +1,7 @@
-FROM multiarch/debian-debootstrap:arm64-stretch
+FROM balenalib/rpi-raspbian
 
 # Install packages
+
 RUN apt-get update
 RUN apt-get install -y jq tzdata python3 python3-dev python3-pip \
         python3-six python3-pyasn1 libportaudio2 alsa-utils \
