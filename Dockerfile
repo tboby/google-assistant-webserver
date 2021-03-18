@@ -16,8 +16,12 @@ RUN pip3 install --upgrade google-assistant-library google-auth \
         grpcio google-assistant-grpc google-auth-oauthlib \
         setuptools wheel google-assistant-sdk[samples] pyopenssl
 #RUN apt-get remove -y --purge python3-pip python3-dev
+RUN apt-get install alsa-base
+RUN apt-get install --reinstall linux-image-extra-`uname -r`
+
 RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
+
 RUN modprobe snd-dummy
 
 # Copy data
