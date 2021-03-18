@@ -22,21 +22,8 @@ RUN pip3 install --upgrade google-assistant-library google-auth \
 
 RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
+RUN adduser root pulse-access
 
-# Load pulseaudio virtual audio source
-RUN pulseaudio --system -D --exit-idle-time=-1
-
-# Create virtual output device (used for audio playback)
-RUN pactl load-module module-null-sink sink_name=DummyOutput sink_properties=device.description="Virtual_Dummy_Output"
-
-# Create virtual microphone output, used to play media into the "microphone"
-RUN pactl load-module module-null-sink sink_name=MicOutput sink_properties=device.description="Virtual_Microphone_Output"
-
-# Set the default source device (for future sources) to use the monitor of the virtual microphone output
-RUN pacmd set-default-source MicOutput.monitor
-
-# Create a virtual audio source linked up to the virtual microphone output
-RUN pacmd load-module module-virtual-source source_name=VirtualMic
 
 #RUN modprobe snd-dummy
 
