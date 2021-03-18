@@ -24,7 +24,7 @@ RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
 
 # Load pulseaudio virtual audio source
-RUN pulseaudio -D --exit-idle-time=-1
+RUN pulseaudio --system -D --exit-idle-time=-1
 
 # Create virtual output device (used for audio playback)
 RUN pactl load-module module-null-sink sink_name=DummyOutput sink_properties=device.description="Virtual_Dummy_Output"
